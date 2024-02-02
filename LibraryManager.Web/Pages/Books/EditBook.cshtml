@@ -1,0 +1,46 @@
+﻿@page "/books/edit/{id:Guid}"
+@using LibraryManager.Data.Enums;
+@model LibraryManager.Web.Pages.Books.EditBookModel
+@{
+	ViewData["Title"] = "Update Book";
+}
+
+<h1>Update Book</h1>
+<hr />
+
+<p>Fill out this form to update the selected book with new information.</p>
+
+<div class="row">
+	<div class="col-md-6">
+		<form method="post">
+			<input style="display:none" asp-for="BookToUpdate.Id" class="form-control" />
+			<input style="display:none" asp-for="BookToUpdate.Created" class="form-control" />
+			<div class="mb-3">
+				<label asp-for="BookToUpdate.Title" class="control-label"></label>
+				<input asp-for="BookToUpdate.Title" class="form-control" />
+				<span asp-validation-for="BookToUpdate.Title" class="text-danger"></span>
+			</div>
+
+			<div class="mb-3">
+				<label asp-for="BookToUpdate.Author" class="control-label"></label>
+				<input asp-for="BookToUpdate.Author" class="form-control" />
+				<span asp-validation-for="BookToUpdate.Author" class="text-danger"></span>
+			</div>
+
+			<div class="mb-3">
+				<label asp-for="BookToUpdate.Category" class="control-label"></label>
+				<select asp-for="BookToUpdate.Category" asp-items="Html.GetEnumSelectList<Category>()" class="form-control"></select>
+				<span asp-validation-for="BookToUpdate.Category" class="text-danger"></span>
+			</div>
+
+			<div class="mb-3">
+				<label asp-for="BookToUpdate.YearPublished" class="control-label"></label>
+				<input asp-for="BookToUpdate.YearPublished" class="form-control" />
+				<span asp-validation-for="BookToUpdate.YearPublished" class="text-danger"></span>
+			</div>
+
+			<button class="btn btn-success">Update</button>
+			<a asp-page="/books/view-all" class="btn btn-secondary">Cancel</a>
+		</form>
+	</div>
+</div>

@@ -22,5 +22,22 @@ namespace LibraryManager.Web.Pages.Books
             // Retrieve all the books from the DB
             Books = _bookRepository.GetAllBooks();
         }
+
+        public IActionResult OnGetDelete(Guid? id)
+        {
+            // If the id is missing or empty, treat this as a bad request
+            if (id == null || id.Value == Guid.Empty)
+            {
+                return BadRequest();
+            }
+
+            // Try deleting the book via the repository service
+            _bookRepository.DeleteBook(id.Value);
+
+            // Reload the books from DB after delete
+            Books = _bookRepository.GetAllBooks();
+            return Page();
+        }
+
     }
 }

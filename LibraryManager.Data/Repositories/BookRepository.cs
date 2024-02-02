@@ -1,4 +1,5 @@
 ﻿using LibraryManager.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,15 +47,12 @@ namespace LibraryManager.Data.Repositories
             return _context.Books.Find(bookId);
         }
 
-        public void UpdateBook(Guid bookId, Book book)
+        public void UpdateBook(Book book)
         {
-            var bookToUpdate = _context.Books.Find(bookId);
-
-            // TODO: Check that the book actually exists, and handle null (not found) case
-
-            if (bookToUpdate != null)
+            if (book != null)
             {
-                _context.Books.Update(bookToUpdate);
+                _context.Entry(book).State = EntityState.Modified;
+                _context.Update(book);
                 _context.SaveChanges();
             }
         }

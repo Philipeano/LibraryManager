@@ -1,4 +1,4 @@
-﻿@page "/books/view-all"
+﻿@page "/books/view-all/{id:Guid?}"
 @model LibraryManager.Web.Pages.Books.ViewAllBooksModel
 @{
 	ViewData["Title"] = "View All Books";
@@ -31,6 +31,11 @@
 					<td>@book.Author</td>
 					<td>@book.Category</td>
 					<td>@book.YearPublished</td>
+					<td>
+					    <a asp-page="/Books/ViewBook" asp-route-id="@book.Id" class="btn btn-success">View</a>
+						<a asp-page="/Books/EditBook" asp-route-id="@book.Id" class="btn btn-primary">Edit</a>
+						<a asp-page-handler="Delete" asp-route-id="@book.Id" class="btn btn-danger">Delete</a>
+					</td>
 				</tr>
 			}
 		}

@@ -11,7 +11,7 @@ namespace LibraryManager.Data.Repositories
     {
         public void CreateBook(Book newBook);
 
-        public void UpdateBook(Guid bookId, Book book);
+        public void UpdateBook(Book book);
 
         public void DeleteBook(Guid bookId);
 
