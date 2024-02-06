@@ -33,8 +33,12 @@
 					<td>@book.YearPublished</td>
 					<td>
 					    <a asp-page="/Books/ViewBook" asp-route-id="@book.Id" class="btn btn-success">View</a>
-						<a asp-page="/Books/EditBook" asp-route-id="@book.Id" class="btn btn-primary">Edit</a>
-						<a asp-page-handler="Delete" asp-route-id="@book.Id" class="btn btn-danger">Delete</a>
+						<a asp-page="/Books/EditBook" asp-route-id="@book.Id" class="btn btn-primary">Edit</a>						
+						<form method="post" style="display:inline">
+							<button asp-page-handler="delete" asp-route-id="@book.Id" class="btn btn-danger" onclick="return confirm('Do you really want to delete this book?');">
+								Delete
+							</button>
+						</form>
 					</td>
 				</tr>
 			}
